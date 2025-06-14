@@ -1,21 +1,22 @@
-package com.piolin.spring.prototype.business;
+package com.piolin.spring.prototype.dao;
 
 import com.piolin.spring.prototype.entity.Client;
 import com.piolin.spring.prototype.repos.ClientRepository;
+import com.piolin.spring.prototype.util.Cons;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class ClientBusiness {
+public class ClientDao {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ClientBusiness.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ClientDao.class);
+    private static final DateFormat dateFormatter = new SimpleDateFormat(Cons.POSTGRES_DATE_FORMAT);
 
+    @Autowired
     ClientRepository clientRepository;
 
     public Client insertClient(Client client){
