@@ -31,13 +31,13 @@ class SpringPrototypeApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.get("/")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(content().string(equalTo("SpingBoot Application is Up & Running ... Version: 1.0.0-RELEASE")));
+				.andExpect(content().string(equalTo("{\"msg\":\"SpingBoot Application is Up & Running ...\",\"version\":\"1.0.0-RELEASE\"}")));
 	}
 
 	@Test
-	void getHello2() throws Exception{
+	void getHello2() {
 		ResponseEntity<String> response = template.getForEntity("/", String.class);
-		assertThat(response.getBody()).isEqualTo("SpingBoot Application is Up & Running ... Version: 1.0.0-RELEASE");
+		assertThat(response.getBody()).isEqualTo("{\"msg\":\"SpingBoot Application is Up & Running ...\",\"version\":\"1.0.0-RELEASE\"}");
 	}
 
 }

@@ -28,14 +28,19 @@ public class ClientDao {
     }
 
     public boolean deleteClientById(long id){
+        boolean wasDeleted;
         try {
-            clientRepository.deleteById(id);
+            if(clientRepository.findById(id) != null){
+                clientRepository.deleteById(id);
+                wasDeleted = true;
+            }else{
+                wasDeleted = false;
+            }
         }catch (Exception ex){
-            LOG.error("Error deleting Client, ID: {}", id);
-
             LOG.error("Error deleting Client, error: {}", ex.getMessage());
+            wasDeleted = false;
         }
-        return true;
+        return wasDeleted;
     }
 
     public List<Client> getClients() {

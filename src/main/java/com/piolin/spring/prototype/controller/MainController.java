@@ -3,7 +3,8 @@ package com.piolin.spring.prototype.controller;
 import com.piolin.spring.prototype.config.ConfigProperties;
 import com.piolin.spring.prototype.dao.ClientDao;
 import com.piolin.spring.prototype.entity.Client;
-import jakarta.websocket.server.PathParam;
+import com.piolin.spring.prototype.pojo.Deleted;
+import com.piolin.spring.prototype.pojo.Root;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +29,30 @@ public class MainController {
     private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
 
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> index(){
-        return new ResponseEntity<>("SpingBoot Application is Up & Running ... Version: " + appProps.getPropsValue("app.version"), HttpStatus.OK);
+    public ResponseEntity<Root> index(){
+        Root root = new Root("SpingBoot Application is Up & Running ...", appProps.getPropsValue("app.version"));
+        return new ResponseEntity<>(root, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/clients/get/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/clients/get", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Client>> getClients(){
-        return new ResponseEntity<>(clientDao.getClients(), HttpStatus.OK);
+        List<Client> clients = clientDao.getClients();
+        if (clients != null && !clients.isEmpty()){
+            return new ResponseEntity<>(clients, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(clients, HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(value = "/clients/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Client> getClientById(@PathParam("id") Long id){
+    public ResponseEntity<Client> getClientById(@PathVariable("id") Long id){ //@RequestParams is for query params
         LOG.info("Client ID to get from DB: {}", id);
-        return new ResponseEntity<>(clientDao.getClientById(id), HttpStatus.OK);
+        Client client = clientDao.getClientById(id);
+        if (client != null){
+            return new ResponseEntity<>(client, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(client, HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping(value = "/clients/add", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -54,9 +66,10 @@ public class MainController {
     }
 
     @DeleteMapping(value = "/clients/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> deleteClient(@PathParam("id") Long id){
+    public ResponseEntity<Deleted> deleteClient(@PathVariable("id") Long id){
         LOG.info("Client ID to delete from DB: {}", id);
-        return new ResponseEntity<>(clientDao.deleteClientById(id), HttpStatus.CREATED);
+        Deleted deleted = new Deleted(id, clientDao.deleteClientById(id));
+        return new ResponseEntity<>(deleted, HttpStatus.OK);
     }
 
 }
