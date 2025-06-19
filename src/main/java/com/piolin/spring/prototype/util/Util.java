@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 public class Util {
 
-    private static Logger LOG = LoggerFactory.getLogger(Util.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Util.class);
 
     ObjectMapper objMapper = new ObjectMapper();
 

@@ -1,10 +1,11 @@
 package com.piolin.spring.prototype.controller;
 
 import com.piolin.spring.prototype.config.ConfigProperties;
-import com.piolin.spring.prototype.dao.ClientDao;
-import com.piolin.spring.prototype.entity.Client;
+import com.piolin.spring.prototype.db.dao.ClientDao;
+import com.piolin.spring.prototype.db.entity.Client;
 import com.piolin.spring.prototype.pojo.Deleted;
 import com.piolin.spring.prototype.pojo.Root;
+import com.piolin.spring.prototype.util.Cons;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,16 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    ClientDao clientDao;
+    ConfigProperties appProps;
 
     @Autowired
-    ConfigProperties appProps;
+    ClientDao clientDao;
 
     private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
 
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Root> index(){
-        Root root = new Root("SpingBoot Application is Up & Running ...", appProps.getPropsValue("app.version"));
+        Root root = new Root(Cons.ROOT_ENDPOINT_MSG, appProps.getPropsValue("app.version"));
         return new ResponseEntity<>(root, HttpStatus.OK);
     }
 

@@ -1,6 +1,6 @@
 package com.piolin.spring.prototype.config;
 
-import com.piolin.spring.prototype.dao.ClientDao;
+import com.piolin.spring.prototype.db.dao.ClientDao;
 import com.piolin.spring.prototype.util.Util;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

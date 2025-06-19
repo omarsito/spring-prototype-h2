@@ -28,7 +28,7 @@ public class AuthenticationFilter extends GenericFilterBean {
             SecurityContextHolder.getContext().setAuthentication(authE);
             filterChain.doFilter(request, response);
         } catch (Exception ex){
-            LOG.error("Error when authenticating: {}", ex.getMessage());
+            LOG.error("Exception on AuthE Filter: {}", ex.getMessage());
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             httpResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
