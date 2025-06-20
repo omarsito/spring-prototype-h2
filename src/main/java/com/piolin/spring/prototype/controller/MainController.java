@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 //ready for use by Spring MVC to handle web requests
@@ -31,7 +30,7 @@ public class MainController {
 
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Root> index(){
-        Root root = new Root(Cons.ROOT_ENDPOINT_MSG, appProps.getPropsValue("app.version"));
+        Root root = new Root(Cons.ROOT_ENDPOINT_MSG, appProps.getPropsValue("spring.application.version"));
         return new ResponseEntity<>(root, HttpStatus.OK);
     }
 

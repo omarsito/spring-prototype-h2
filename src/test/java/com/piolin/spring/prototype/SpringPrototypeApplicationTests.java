@@ -33,7 +33,7 @@ class SpringPrototypeApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.get("/")//.header("X-API-KEY")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(content().string(equalTo("{\"msg\":\"My REST-API is Up & Running as expected on a GKE Cluster ...\",\"version\":\"1.0.0-RELEASE\"}")));
+				.andExpect(content().string(equalTo("{\"msg\":\"My REST-API is Up & Running as expected on a GKE Cluster ...\",\"version\":\"1.0.0-SNAPSHOT\"}")));
 	}
 
 	@Test
@@ -41,7 +41,7 @@ class SpringPrototypeApplicationTests {
 		//HttpHeaders headers = new HttpHeaders();
 		//headers.add("X-API-KEY", "Yamilin");
 		ResponseEntity<String> response = template.getForEntity("/", String.class);
-		assertThat(response.getBody()).isEqualTo("{\"msg\":\"My REST-API is Up & Running as expected on a GKE Cluster ...\",\"version\":\"1.0.0-RELEASE\"}");
+		assertThat(response.getBody()).isEqualTo("{\"msg\":\"My REST-API is Up & Running as expected on a GKE Cluster ...\",\"version\":\"1.0.0-SNAPSHOT\"}");
 	}
 
 }

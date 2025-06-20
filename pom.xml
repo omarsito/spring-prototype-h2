@@ -86,11 +86,11 @@
 			<version>2.19.0</version>
 		</dependency>
 
-		<!-- Spring Security implementation with API Keys to secure the REST-API -->
+		<!-- Spring Security implementation with API Keys to secure the REST-API
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<!-- Swagger dependency -->
 		<dependency>

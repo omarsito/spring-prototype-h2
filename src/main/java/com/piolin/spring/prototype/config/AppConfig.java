@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan (basePackages = "com.piolin.spring.prototype")
+@ComponentScan(basePackages = "com.piolin.spring.prototype")
 public class AppConfig {
 
     @Bean(name = "util")

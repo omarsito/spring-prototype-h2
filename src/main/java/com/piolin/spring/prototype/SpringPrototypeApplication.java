@@ -5,14 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-
 import java.util.Arrays;
-/*
 
+/*
 SpringBootApplication is a convenience annotation that adds / executes the following three annotations:
 
 @Configuration: Tags the class as a source of bean definitions for the application context.
@@ -21,6 +18,10 @@ For example, if spring-webmvc is on the classpath, this annotation flags the app
 such as setting up a DispatcherServlet.
 @ComponentScan: Tells Spring to look for other components, configurations, and services in the package, letting it find the
 controllers.
+
+Excluded when using SpringSecurity AuthE with API Keys
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 
  */
 @SpringBootApplication
