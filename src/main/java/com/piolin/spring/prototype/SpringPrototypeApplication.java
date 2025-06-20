@@ -23,7 +23,7 @@ such as setting up a DispatcherServlet.
 controllers.
 
  */
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class})
+@SpringBootApplication
 public class SpringPrototypeApplication {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SpringPrototypeApplication.class);
@@ -33,7 +33,7 @@ public class SpringPrototypeApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+	public CommandLineRunner commandLineRunner(ApplicationContext ctx) { // ClientRepository could be injected here to test
 		return args -> {
 
 			LOG.info("Let's inspect the beans provided by SpringBoot:");

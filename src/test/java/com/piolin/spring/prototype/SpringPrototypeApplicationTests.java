@@ -28,20 +28,20 @@ class SpringPrototypeApplicationTests {
 	@Autowired
 	private TestRestTemplate template;
 
-	/*@Test
+	@Test
 	void getHello() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/").header("X-API-KEY")
+		mockMvc.perform(MockMvcRequestBuilders.get("/")//.header("X-API-KEY")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(content().string(equalTo("{\"msg\":\"SpingBoot Application is Up & Running ...\",\"version\":\"1.0.0-RELEASE\"}")));
+				.andExpect(content().string(equalTo("{\"msg\":\"My REST-API is Up & Running as expected on a GKE Cluster ...\",\"version\":\"1.0.0-RELEASE\"}")));
 	}
 
 	@Test
 	void getHello2() {
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("X-API-KEY", "Yamilin");
+		//HttpHeaders headers = new HttpHeaders();
+		//headers.add("X-API-KEY", "Yamilin");
 		ResponseEntity<String> response = template.getForEntity("/", String.class);
-		assertThat(response.getBody()).isEqualTo("{\"msg\":\"SpingBoot Application is Up & Running ...\",\"version\":\"1.0.0-RELEASE\"}");
-	}*/
+		assertThat(response.getBody()).isEqualTo("{\"msg\":\"My REST-API is Up & Running as expected on a GKE Cluster ...\",\"version\":\"1.0.0-RELEASE\"}");
+	}
 
 }
