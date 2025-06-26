@@ -29,8 +29,8 @@ import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServic
 
  */
 @SpringBootApplication
-@EntityScan("com.piolin.spring.prototype.db.entity")
-@EnableJpaRepositories("com.piolin.spring.prototype.db.repo")
+@EntityScan("com.piolin.spring.prototype.database.entity")
+@EnableJpaRepositories("com.piolin.spring.prototype.database.repo")
 @ComponentScan(basePackages = {"com.piolin.spring.prototype"})
 public class SpringPrototypeApplication {
 

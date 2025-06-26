@@ -1,7 +1,7 @@
-package com.piolin.spring.prototype.db.dao;
+package com.piolin.spring.prototype.database.dao;
 
-import com.piolin.spring.prototype.db.entity.Client;
-import com.piolin.spring.prototype.db.repo.ClientRepository;
+import com.piolin.spring.prototype.database.entity.Client;
+import com.piolin.spring.prototype.database.repo.ClientRepository;
 import com.piolin.spring.prototype.util.Cons;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

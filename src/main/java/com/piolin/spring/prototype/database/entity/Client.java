@@ -1,4 +1,4 @@
-package com.piolin.spring.prototype.db.entity;
+package com.piolin.spring.prototype.database.entity;
 
 import com.piolin.spring.prototype.util.Util;
 import jakarta.persistence.Entity;
