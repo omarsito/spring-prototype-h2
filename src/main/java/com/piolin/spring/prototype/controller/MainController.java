@@ -62,7 +62,7 @@ public class MainController {
 
     @PutMapping(value = "/clients/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Client> updateClient(@RequestBody Client client){
-        return new ResponseEntity<>(clientDao.updateClient(client), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(clientDao.updateClient(client), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/clients/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
