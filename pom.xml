@@ -13,7 +13,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.piolin</groupId>
 	<artifactId>spring-prototype</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>spring-prototype</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -93,6 +93,7 @@
 		</dependency> -->
 
 		<!-- Swagger dependency -->
+		<!-- URL -> http://localhost:8080/swagger-ui/index.html -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
