@@ -5,9 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 //JPA Entity
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Client {
 
     @Id
@@ -15,12 +21,16 @@ public class Client {
     private Long id;
     private String firstName;
     private String lastName;
+    private String role;
+    private String email;
 
     protected Client(){}
 
-    public Client(String firstName, String lastName){
+    public Client(String firstName, String lastName, String email, String role){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.role = role;
     }
 
     public Long getId() {
@@ -47,8 +57,17 @@ public class Client {
         this.lastName = lastName;
     }
 
+    public String getRole() { return role; }
+
+    public void setRole(String role) { this.role = role;}
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
     @Override
     public String toString(){
         return new Util().convertObject2Json(this);
     }
+
 }

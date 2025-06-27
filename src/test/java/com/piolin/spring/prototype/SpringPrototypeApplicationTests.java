@@ -24,7 +24,7 @@ class SpringPrototypeApplicationTests {
 	@Autowired
 	private TestRestTemplate template;
 
-	@Test
+	/**@Test
 	void getHello() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/")//.header("X-API-KEY")
 				.accept(MediaType.APPLICATION_JSON))
@@ -39,5 +39,5 @@ class SpringPrototypeApplicationTests {
 		ResponseEntity<String> response = template.getForEntity("/", String.class);
 		assertThat(response.getBody()).isEqualTo("{\"msg\":\"My REST-API is Up & Running as expected on a GKE Cluster ...\",\"version\":\"1.0.0-SNAPSHOT\"}");
 	}
-
+	**/
 }

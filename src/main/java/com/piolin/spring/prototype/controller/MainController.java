@@ -1,11 +1,12 @@
 package com.piolin.spring.prototype.controller;
 
 import com.piolin.spring.prototype.business.ClientBusiness;
-import com.piolin.spring.prototype.config.ConfigProperties;
-import com.piolin.spring.prototype.database.dao.ClientDao;
+import com.piolin.spring.prototype.config.PropsConfig;
 import com.piolin.spring.prototype.database.entity.Client;
+import com.piolin.spring.prototype.entity.AuthRequest;
 import com.piolin.spring.prototype.pojo.Deleted;
 import com.piolin.spring.prototype.pojo.Root;
+import com.piolin.spring.prototype.security.service.JwtService;
 import com.piolin.spring.prototype.util.Cons;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -22,16 +27,22 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    ConfigProperties appProps;
+    PropsConfig propsConfig;
 
     @Autowired
     ClientBusiness clientBusiness;
+
+    @Autowired
+    AuthenticationManager authManager;
+
+    @Autowired
+    JwtService jwtService;
 
     private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
 
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Root> index(){
-        Root root = new Root(Cons.ROOT_ENDPOINT_MSG, appProps.getPropsValue("spring.application.version"));
+        Root root = new Root(Cons.ROOT_ENDPOINT_MSG, propsConfig.getPropsValue(Cons.APP_VERSION));
         return new ResponseEntity<>(root, HttpStatus.OK);
     }
 
@@ -71,6 +82,17 @@ public class MainController {
         LOG.info("Client ID to delete from DB: {}", id);
         Deleted deleted = new Deleted(id, clientBusiness.deleteClientById(id));
         return new ResponseEntity<>(deleted, HttpStatus.OK);
+    }
+
+    @PostMapping("/authToken")
+    public String authEAndGetToken(@RequestBody AuthRequest authRequest){
+        Authentication auth = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPwd()));
+        if (auth.isAuthenticated()) {
+            return null;
+        } else {
+            throw new UsernameNotFoundException("Invalid User ...");
+        }
     }
 
 }
