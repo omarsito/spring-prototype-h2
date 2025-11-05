@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 
 //JPA Entity
 @Entity
-public class Client {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,16 +17,16 @@ public class Client {
     private String lastName;
     private String email;
 
-    protected Client(){}
+    protected Customer(){}
 
-    public Client(Long id, String firstName, String lastName, String email){
+    public Customer(Long id, String firstName, String lastName, String email){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public Client(String firstName, String lastName, String email){
+    public Customer(String firstName, String lastName, String email){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

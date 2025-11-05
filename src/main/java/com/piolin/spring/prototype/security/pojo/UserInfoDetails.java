@@ -1,7 +1,6 @@
 package com.piolin.spring.prototype.security.pojo;
 
-import com.piolin.spring.prototype.database.entity.Client;
-import com.piolin.spring.prototype.database.entity.UserInfo;
+import com.piolin.spring.prototype.database.entity.APIUserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +16,10 @@ public class UserInfoDetails implements UserDetails {
     private String pwd;
     private List<GrantedAuthority> authorities;
 
-    public UserInfoDetails(UserInfo userInfo){
-        this.username = userInfo.getEmail();
-        this.pwd = userInfo.getPwd();
-        this.authorities =  Stream.of(userInfo.getRoles().split(",")).map(SimpleGrantedAuthority::new)
+    public UserInfoDetails(APIUserInfo APIUserInfo){
+        this.username = APIUserInfo.getEmail();
+        this.pwd = APIUserInfo.getPwd();
+        this.authorities =  Stream.of(APIUserInfo.getRoles().split(",")).map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
     }

@@ -1,7 +1,7 @@
 package com.piolin.spring.prototype.config;
 
-import com.piolin.spring.prototype.business.ClientBusiness;
-import com.piolin.spring.prototype.database.dao.ClientDao;
+import com.piolin.spring.prototype.business.CustomerBusiness;
+import com.piolin.spring.prototype.database.dao.CustomerDao;
 import com.piolin.spring.prototype.util.Util;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,13 +17,13 @@ public class AppConfig {
     }
 
     @Bean(name = "clientBusiness")
-    public ClientBusiness clientBusiness(){
-        return new ClientBusiness();
+    public CustomerBusiness clientBusiness(){
+        return new CustomerBusiness();
     }
 
     @Bean(name = "clientDao")
-    public ClientDao clientDao(){
-        return new ClientDao();
+    public CustomerDao clientDao(){
+        return new CustomerDao();
     }
 
 }

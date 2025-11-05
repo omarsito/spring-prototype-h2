@@ -1,7 +1,7 @@
 package com.piolin.spring.prototype.security.service;
 
-import com.piolin.spring.prototype.database.entity.UserInfo;
-import com.piolin.spring.prototype.database.repo.UserInfoRepository;
+import com.piolin.spring.prototype.database.entity.APIUserInfo;
+import com.piolin.spring.prototype.database.repo.APIUserInfoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,36 +18,36 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class UserInfoService implements UserDetailsService {
+public class APIUserInfoService implements UserDetailsService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserInfoService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(APIUserInfoService.class);
 
     private final PasswordEncoder encoder;
-    private final UserInfoRepository userInfoRepository;
+    private final APIUserInfoRepository APIUserInfoRepository;
 
     @Lazy
     @Autowired
-    public UserInfoService(UserInfoRepository userInfoRepository, PasswordEncoder encoder) {
-        this.userInfoRepository = userInfoRepository;
+    public APIUserInfoService(APIUserInfoRepository APIUserInfoRepository, PasswordEncoder encoder) {
+        this.APIUserInfoRepository = APIUserInfoRepository;
         this.encoder = encoder;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserInfo> userInfo = userInfoRepository.findByEmail(username);
+        Optional<APIUserInfo> userInfo = APIUserInfoRepository.findByEmail(username);
         if(userInfo.isEmpty()){
             throw new UsernameNotFoundException("User NOT found by email: " + username);
         }
 
-        UserInfo user = userInfo.get();
+        APIUserInfo user = userInfo.get();
         return new User(user.getEmail(), user.getPwd(), Stream.of(user.getRoles().split(",")).map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList()));
     }
 
-    public UserInfo addUser(UserInfo userInfo){
-        userInfo.setPwd(encoder.encode(userInfo.getPwd()));
-        UserInfo newUserInfo = userInfoRepository.save(userInfo);
+    public APIUserInfo addUser(APIUserInfo APIUserInfo){
+        APIUserInfo.setPwd(encoder.encode(APIUserInfo.getPwd()));
+        APIUserInfo newAPIAPIUserInfo = APIUserInfoRepository.save(APIUserInfo);
         LOG.info("User Added successfully !!!");
-        return newUserInfo;
+        return newAPIAPIUserInfo;
     }
 }

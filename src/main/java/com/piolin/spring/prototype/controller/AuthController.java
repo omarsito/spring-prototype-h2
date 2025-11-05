@@ -43,6 +43,10 @@ public class AuthController {
         LOG.info("Getting a new JWT token ...");
         Authentication auth = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPwd()));
+
+        LOG.info("Authentication via Auth Manager is authenticated: {}", auth.isAuthenticated());
+        LOG.info("Authentication via Auth Manager Details: {}", auth.getDetails());
+
         if (auth.isAuthenticated()) {
             return jwtService.generateToken(authRequest.getUsername());
         } else {

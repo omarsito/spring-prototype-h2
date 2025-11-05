@@ -44,13 +44,15 @@ public class SpringPrototypeApplication {
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) { // ClientRepository could be injected here to test
 		return args -> {
 
-			LOG.info("Let's inspect the beans provided by SpringBoot:");
+			LOG.info("Let's inspect the Beans provided by SpringBoot Framework:");
 
 			String[] beanNames = ctx.getBeanDefinitionNames();
 			Arrays.sort(beanNames);
 			for (String beanName : beanNames) {
 				LOG.info("Bean name: {}", beanName);
 			}
+
+			LOG.info("Arguments Array: {} ", Arrays.stream(args).sorted().toList());
 		};
 	}
 

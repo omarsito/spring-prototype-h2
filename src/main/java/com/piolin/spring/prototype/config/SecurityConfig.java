@@ -19,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/auth/root", "/auth/get-token", "/users/add").permitAll()
                                 .requestMatchers("/clients**").hasAuthority("ROLE_USER")
-                                //.requestMatchers("/users/admin/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers("/users**").hasAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -1,7 +1,7 @@
 package com.piolin.spring.prototype.controller;
 
-import com.piolin.spring.prototype.database.entity.UserInfo;
-import com.piolin.spring.prototype.security.service.UserInfoService;
+import com.piolin.spring.prototype.database.entity.APIUserInfo;
+import com.piolin.spring.prototype.security.service.APIUserInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.*;
 //Combines @Controller & @ResponseBody
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class APIUserController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(APIUserController.class);
 
     @Autowired
-    UserInfoService service;
+    APIUserInfoService service;
 
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserInfo> insertClient(@RequestBody UserInfo userInfo){
-        LOG.info("Creating new user ... data: {}", userInfo.toString());
-        return new ResponseEntity<>(service.addUser(userInfo), HttpStatus.CREATED);
+    public ResponseEntity<APIUserInfo> insertClient(@RequestBody APIUserInfo APIUserInfo){
+        LOG.info("Creating new user ... data: {}", APIUserInfo);
+        return new ResponseEntity<>(service.addUser(APIUserInfo), HttpStatus.CREATED);
     }
 
 }

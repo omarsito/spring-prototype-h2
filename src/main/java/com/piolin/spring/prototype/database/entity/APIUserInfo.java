@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserInfo {
+public class APIUserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class UserInfo {
     private String pwd;
     private String roles;
 
-    public UserInfo(String email, String pwd, String roles){
+    public APIUserInfo(String email, String pwd, String roles){
         this.email = email;
         this.pwd = pwd;
         this.roles = roles;
